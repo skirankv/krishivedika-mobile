@@ -1,14 +1,20 @@
 import React from 'react';
-import {SafeAreaProvider} from 'react-native-safe-area-context';
-import {NavigationContainer} from '@react-navigation/native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { NavigationContainer } from '@react-navigation/native';
 import BaseNavigator from './src/navigators/BaseNavigator';
-import {RootSiblingParent} from 'react-native-root-siblings';
+import { RootSiblingParent } from 'react-native-root-siblings';
 import ErrorBoundary from 'react-native-error-boundary';
-import {StatusBar} from 'react-native';
+import { StatusBar } from 'react-native';
 import ErrorScreen from './src/screens/ErrorScreen';
+import { NativeBaseProvider } from 'native-base';
+import { LogBox } from 'react-native';
+
+LogBox.ignoreLogs(['Warning: ...']);
+LogBox.ignoreLogs(['Remote debugger']);
+LogBox.ignoreAllLogs();
 
 const App: React.FC = () => {
-  const CustomFallback = (props: {error: Error; resetError: () => void}) => (
+  const CustomFallback = (props: { error: Error; resetError: () => void }) => (
     <ErrorScreen resetError={props.resetError} />
   );
 
@@ -17,8 +23,10 @@ const App: React.FC = () => {
       <NavigationContainer>
         <RootSiblingParent>
           <ErrorBoundary FallbackComponent={CustomFallback}>
-            <StatusBar barStyle="dark-content" backgroundColor="#fff" />
-            <BaseNavigator />
+            <NativeBaseProvider>
+              <StatusBar barStyle="dark-content" backgroundColor="#fff" />
+              <BaseNavigator />
+            </NativeBaseProvider>
           </ErrorBoundary>
         </RootSiblingParent>
       </NavigationContainer>

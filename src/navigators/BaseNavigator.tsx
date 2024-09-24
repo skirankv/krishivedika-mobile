@@ -1,16 +1,20 @@
-import {View, Text, SafeAreaView, Image, TouchableOpacity} from 'react-native';
 import React from 'react';
+import { createStackNavigator } from '@react-navigation/stack';
+import HomeScreen from '../screens/HomeScreen';
+import Routes from './Routes';
 
-const BaseNavigator = () => {
+const BaseNavigator: React.FC = () => {
+  const Stack = createStackNavigator();
   return (
-    <View>
-      <Text>BaseNavigator</Text>
-    </View>
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+        gestureEnabled: false,
+        headerLeft: () => null,
+      }}>
+      <Stack.Screen name={Routes.Home} component={HomeScreen} />
+    </Stack.Navigator>
   );
 };
 
 export default BaseNavigator;
-
-// async storage
-// redux
-// axios
