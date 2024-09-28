@@ -11,6 +11,7 @@ import { LogBox } from 'react-native';
 
 LogBox.ignoreLogs(['Warning: ...']);
 LogBox.ignoreLogs(['Remote debugger']);
+LogBox.ignoreLogs(['In React 18, SSRProvider is not necessary']);
 LogBox.ignoreAllLogs();
 
 const App: React.FC = () => {
