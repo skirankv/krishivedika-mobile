@@ -1,12 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 import ToggleMenu from '../components/common/ToggleMenu';
+// import { MapView } from '@rnmapbox/maps';
 
 const HomeScreen = () => {
   return (
-    <View>
+    <View style={{ flex: 1 }}>
       <ToggleMenu />
-      <Text style={{ color: '#000' }}>HomeScreen</Text>
+      <Text style={{ color: '#000000' }}>HomeScreen</Text>
+      <View style={{ flex: 1 }}>{/* <MapView style={{ flex: 1 }} /> */}</View>
     </View>
   );
 };
